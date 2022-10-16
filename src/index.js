@@ -34,7 +34,7 @@ async function onSearch(event) {
   buttonEl.classList.add('visually-hidden');
   searchQuery.page = 1;
 
-  const query = event.target.elements.searchQuery.value.trim();
+  const query = event.target.elements.searchQuery.value;
 
   const response = await searchQuery.searchPictures(query);
   console.log(response);
@@ -86,7 +86,7 @@ async function onLoadMore() {
   });
 }
 
-function renderMarkup(galleryItems) {
-  galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(galleryItems));
+function renderMarkup(arr) {
+  galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(arr));
   lightbox.refresh();
 }

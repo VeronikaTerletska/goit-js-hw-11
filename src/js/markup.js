@@ -1,5 +1,5 @@
-export function createGalleryMarkup(galleryItems) {
-  return galleryItems
+export function createGalleryMarkup(arr) {
+  return arr
     .map(
       ({
         largeImageURL,
