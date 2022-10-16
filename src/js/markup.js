@@ -1,19 +1,14 @@
-export function createGalleryMarkup(arr) {
-  return arr
-    .map(
-      ({
-        largeImageURL,
-        webformatURL,
-        tags,
-        likes,
-        views,
-        comments,
-        downloads,
-      }) => {
-        return `
+export function createGalleryMarkup(array) {
+  return array.reduce(
+    (
+      acc,
+      { largeImageURL, webformatURL, tags, likes, views, comments, downloads }
+    ) =>
+      acc +
+      `
     <a href="${largeImageURL}" class="gallery__link">
     <div class="photo-card">
-  <img src="${webformatURL}" height="300" alt="${tags}" loading="lazy" />
+  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
       <b>Likes</b> ${likes}
@@ -29,8 +24,7 @@ export function createGalleryMarkup(arr) {
     </p>
   </div>
 </div>
-</a>`;
-      }
-    )
-    .join('');
+</a>`,
+    ' '
+  );
 }

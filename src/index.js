@@ -34,7 +34,7 @@ async function onSearch(event) {
   buttonEl.classList.add('visually-hidden');
   searchQuery.page = 1;
 
-  const query = event.target.elements.searchQuery.value;
+  const query = event.target.elements.searchQuery.value.trim();
 
   const response = await searchQuery.searchPictures(query);
   console.log(response);
@@ -52,7 +52,7 @@ async function onSearch(event) {
       return;
     } else {
       Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
-      renderMarkup(response.hits);
+      renderingMarkup(response.hits);
       buttonEl.classList.remove('visually-hidden');
       //  Scroll add
       observer.observe(buttonEl);
@@ -72,10 +72,8 @@ async function onLoadMore() {
       "We're sorry, but you've reached the end of search results."
     );
   }
-  renderMarkup(response.hits);
-
+  renderingMarkup(response.hits);
   // Прокручування сторінки
-
   const { height: cardHeight } = document
     .querySelector('.gallery')
     .firstElementChild.getBoundingClientRect();
@@ -86,7 +84,7 @@ async function onLoadMore() {
   });
 }
 
-function renderMarkup(arr) {
-  galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(arr));
+function renderingMarkup(array) {
+  galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(array));
   lightbox.refresh();
 }
