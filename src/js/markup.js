@@ -8,7 +8,7 @@ export function createGalleryMarkup(array) {
       `
     <a href="${largeImageURL}" class="gallery__link">
     <div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+  <img src="${webformatURL}" height="300" alt="${tags}" loading="lazy" />
   <div class="info">
     <p class="info-item">
       <b>Likes</b> ${likes}
