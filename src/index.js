@@ -20,14 +20,14 @@ const lightbox = new SimpleLightbox('.gallery a', {
 formEl.addEventListener('submit', onSearch);
 buttonEl.addEventListener('click', onLoadMore);
 
-// Scroll
-const options = {
-  rootMargin: '50px',
-  root: null,
-  threshold: 0.3,
-};
-const observer = new IntersectionObserver(onLoadMore, options);
-//observer.observe(buttonEl);
+// // Scroll
+// const options = {
+//   rootMargin: '50px',
+//   root: null,
+//   threshold: 0.3,
+// };
+// const observer = new IntersectionObserver(onLoadMore, options);
+// //observer.observe(buttonEl);
 
 async function onSearch(event) {
   event.preventDefault();
@@ -52,10 +52,9 @@ async function onSearch(event) {
       return;
     } else {
       Notiflix.Notify.success(`Hooray! We found ${response.totalHits} images.`);
-      renderingMarkup(response.hits);
+      renderMarkup(response.hits);
       buttonEl.classList.remove('visually-hidden');
-      //  Scroll add
-      observer.observe(buttonEl);
+      // //observer.observe(buttonEl);
     }
   } catch (error) {
     console.log(error.message);
@@ -72,8 +71,8 @@ async function onLoadMore() {
       "We're sorry, but you've reached the end of search results."
     );
   }
-  renderingMarkup(response.hits);
-  // Прокручування сторінки
+  renderMarkup(response.hits);
+
   const { height: cardHeight } = document
     .querySelector('.gallery')
     .firstElementChild.getBoundingClientRect();
@@ -84,7 +83,7 @@ async function onLoadMore() {
   });
 }
 
-function renderingMarkup(array) {
+function renderMarkup(array) {
   galleryEl.insertAdjacentHTML('beforeend', createGalleryMarkup(array));
   lightbox.refresh();
 }
